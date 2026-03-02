@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://clwrjexyie61m"]
+
+[ext_resource type="Script" uid="uid://sjq012k0r60e" path="res://global_sfx.gd" id="1_lgu8u"]
+[ext_resource type="AudioStream" uid="uid://butdibm2y1kwg" path="res://assets/pickup.wav" id="2_5osk8"]
+[ext_resource type="AudioStream" uid="uid://bt6an1fkxcb5e" path="res://assets/win.wav" id="3_5osk8"]
+
+[node name="SFXManager" type="Node2D"]
+script = ExtResource("1_lgu8u")
+
+[node name="PickupPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5osk8")
+volume_db = 3.0
+pitch_scale = 2.0
+
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5osk8")
+volume_db = 6.029
+
+[node name="Lose" type="AudioStreamPlayer2D" parent="."]

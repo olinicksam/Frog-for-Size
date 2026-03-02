@@ -1,0 +1,122 @@
+[gd_scene load_steps=22 format=3 uid="uid://utsqvg6tn78q"]
+
+[ext_resource type="Script" uid="uid://bsh1hl1ch0x5u" path="res://scripts/frog_player.gd" id="1_loxnv"]
+[ext_resource type="Texture2D" uid="uid://dxfesabnubtws" path="res://assets/frog1.png" id="2_qlivh"]
+[ext_resource type="Texture2D" uid="uid://cvrbmy74l1rys" path="res://assets/frog2.png" id="3_ecf34"]
+[ext_resource type="Texture2D" uid="uid://b41hiaudjwjv6" path="res://assets/frog2.5.png" id="4_3h5gb"]
+[ext_resource type="Texture2D" uid="uid://dkjb5vat8gqh7" path="res://assets/frog3.png" id="5_jfgyp"]
+[ext_resource type="Texture2D" uid="uid://c2eqpmys0hvef" path="res://assets/frog.png" id="6_uodmy"]
+[ext_resource type="Texture2D" uid="uid://dmcudjp6s4ku2" path="res://assets/frog4.5.png" id="7_u0oov"]
+[ext_resource type="Texture2D" uid="uid://cb2ec7rvsod3d" path="res://assets/frog4.png" id="8_plffe"]
+[ext_resource type="Texture2D" uid="uid://df0k4ut7h71ou" path="res://assets/fulltongue.png" id="9_3h5gb"]
+[ext_resource type="AudioStream" uid="uid://cpmxp8f8bma6h" path="res://assets/445974__breviceps__cartoon-slurp.wav" id="10_jfgyp"]
+[ext_resource type="AudioStream" uid="uid://bxdhrcvrvcxug" path="res://assets/28077__klankschap__bonk.wav" id="11_uodmy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27a4y"]
+atlas = ExtResource("2_qlivh")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sog4t"]
+atlas = ExtResource("3_ecf34")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5a8d"]
+atlas = ExtResource("4_3h5gb")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yn6u"]
+atlas = ExtResource("5_jfgyp")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhalq"]
+atlas = ExtResource("6_uodmy")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aurhl"]
+atlas = ExtResource("7_u0oov")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s14ew"]
+atlas = ExtResource("8_plffe")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdsxn"]
+atlas = ExtResource("7_u0oov")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7mjea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27a4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sog4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5a8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yn6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhalq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aurhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s14ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdsxn")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa5gh"]
+size = Vector2(151, 197)
+
+[node name="FrogPlayer" type="CharacterBody2D" groups=["player"]]
+collision_layer = 17
+script = ExtResource("1_loxnv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -3.0000002)
+rotation = 1.5707964
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_7mjea")
+animation = &"move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -4.5)
+shape = SubResource("RectangleShape2D_pa5gh")
+
+[node name="TongueOrigin" type="Marker2D" parent="."]
+position = Vector2(37, 1)
+
+[node name="TongueRay" type="RayCast2D" parent="."]
+position = Vector2(36, 1)
+target_position = Vector2(16, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="TongueSprite" type="Sprite2D" parent="TongueRay"]
+visible = false
+position = Vector2(60, -3)
+scale = Vector2(0.10937166, 0.101041675)
+texture = ExtResource("9_3h5gb")
+centered = false
+offset = Vector2(-751.8497, -542.43286)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_jfgyp")
+pitch_scale = 1.5
+
+[node name="bonk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_uodmy")
+volume_db = 6.058
+pitch_scale = 2.8

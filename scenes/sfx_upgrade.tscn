@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://yyds1lbvnmo"]
+
+[ext_resource type="Script" uid="uid://cg4jxmaoe8den" path="res://sfx_upgrade.gd" id="1_32qcc"]
+[ext_resource type="AudioStream" uid="uid://b85w7wtdhdl6r" path="res://assets/521949__kastenfrosch__success-jingle.ogg" id="2_dk2pm"]
+
+[node name="SFXUpgrade" type="Node2D"]
+script = ExtResource("1_32qcc")
+
+[node name="Success" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("2_dk2pm")

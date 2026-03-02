@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://df47xwr6ewn8i"]
+
+[ext_resource type="Script" uid="uid://dnwhcasexpr6v" path="res://scenes/music_manager.gd" id="1_hetdf"]
+[ext_resource type="AudioStream" uid="uid://cdjnknw6h67wy" path="res://assets/backgroundMusic.wav" id="1_tn5dr"]
+
+[node name="MusicManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_hetdf")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_tn5dr")
+volume_db = -3.0

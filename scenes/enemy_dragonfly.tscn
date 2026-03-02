@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://xgnsm1livr10"]
+
+[ext_resource type="Script" uid="uid://c52g07s83jlu" path="res://scripts/enemy_dragonfly.gd" id="1_cg0a6"]
+[ext_resource type="Texture2D" uid="uid://nri1y8arvoow" path="res://assets/dragonfly1.png" id="2_c2u0h"]
+[ext_resource type="Texture2D" uid="uid://bfs0kb7vu5ooc" path="res://assets/dragonfly2.png" id="3_54vn3"]
+[ext_resource type="Texture2D" uid="uid://dldxy17m4hgl2" path="res://assets/dragonfly3.png" id="4_teb8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bct6l"]
+atlas = ExtResource("2_c2u0h")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5isc"]
+atlas = ExtResource("3_54vn3")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kfni"]
+atlas = ExtResource("4_teb8w")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yds6e"]
+atlas = ExtResource("3_54vn3")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6f8l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bct6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5isc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kfni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yds6e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_415dk"]
+radius = 65.95182
+height = 366.0881
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vytxr"]
+size = Vector2(35.77778, 16.11111)
+
+[node name="EnemyDragonFly" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 3
+script = ExtResource("1_cg0a6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_l6f8l")
+autoplay = "default"
+frame = 1
+frame_progress = 0.9324
+offset = Vector2(7, 32)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -22.000002)
+rotation = 1.5818368
+shape = SubResource("CapsuleShape2D_415dk")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(4, -72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(1, 54)
+scale = Vector2(9, 9)
+shape = SubResource("RectangleShape2D_vytxr")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

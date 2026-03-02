@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkn60h08jfs0u"]
+
+[ext_resource type="Script" uid="uid://dvxlkvie2j3sx" path="res://scenes/win_screen.gd" id="1_erk2x"]
+[ext_resource type="FontFile" uid="uid://lo5bob3o0ork" path="res://assets/Daisy Summer.otf" id="1_wv5lq"]
+[ext_resource type="Texture2D" uid="uid://ckgqstaas5834" path="res://assets/Start_Screen.png" id="2_e41g7"]
+[ext_resource type="AudioStream" uid="uid://bt6an1fkxcb5e" path="res://assets/win.wav" id="4_e41g7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e41g7"]
+texture = ExtResource("2_e41g7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1n1m7"]
+bg_color = Color(0.2, 0.4392157, 0.20392157, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erk2x"]
+bg_color = Color(0.2, 0.4392157, 0.20392157, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73mov"]
+bg_color = Color(0.2, 0.4392157, 0.20392157, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(2, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l6cc"]
+bg_color = Color(0.2, 0.4392157, 0.20392157, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(2, 5)
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_erk2x")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -102.0
+offset_top = -34.0
+offset_right = 24.0
+offset_bottom = 34.0625
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_e41g7")
+
+[node name="Main Menu" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 185.0
+offset_top = -37.5
+offset_right = 485.0
+offset_bottom = 37.5
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wv5lq")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_1n1m7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_erk2x")
+text = "Main Menu"
+
+[node name="Retry" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -396.0
+offset_top = -37.5
+offset_right = -96.0
+offset_bottom = 37.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(144, 40)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_wv5lq")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_73mov")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2l6cc")
+text = "Retry"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 55.0
+offset_right = 274.0
+offset_bottom = 235.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.30588236, 0.61960787, 0.3137255, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_wv5lq")
+theme_override_font_sizes/font_size = 200
+text = "You Win!"
+
+[node name="win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_e41g7")
+volume_db = 9.087
+
+[connection signal="pressed" from="Panel/Main Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Panel/Retry" to="." method="_on_retry_pressed"]

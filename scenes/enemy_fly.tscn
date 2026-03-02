@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2y7eqobtrcdy"]
+
+[ext_resource type="Script" uid="uid://cm7yu660h16sm" path="res://scripts/enemy_fly.gd" id="1_d6bkl"]
+[ext_resource type="Texture2D" uid="uid://uqv7atbf22bb" path="res://assets/fly1.png" id="2_vytxr"]
+[ext_resource type="Texture2D" uid="uid://dc2gydv4o8o2s" path="res://assets/fly2.png" id="3_yds6e"]
+[ext_resource type="AudioStream" uid="uid://pl0id7i8j2gh" path="res://assets/flybuzzing.mp3" id="4_yds6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6f8l"]
+atlas = ExtResource("2_vytxr")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1tri"]
+atlas = ExtResource("3_yds6e")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bct6l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6f8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1tri")
+}],
+"loop": true,
+"name": &"flapping",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_415dk"]
+radius = 49.974876
+height = 119.94853
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vytxr"]
+size = Vector2(14, 13)
+
+[node name="EnemyFly" type="CharacterBody2D" groups=["enemies"]]
+process_mode = 3
+collision_layer = 3
+script = ExtResource("1_d6bkl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -1)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_bct6l")
+animation = &"flapping"
+autoplay = "flapping"
+frame_progress = 0.4952409
+offset = Vector2(7, 32)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 7)
+rotation = 1.5818368
+shape = SubResource("CapsuleShape2D_415dk")
+metadata/_edit_lock_ = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(9.000004, 11.500001)
+scale = Vector2(9, 9)
+shape = SubResource("RectangleShape2D_vytxr")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yds6e")
+parameters/looping = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
